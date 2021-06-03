@@ -1,1 +1,1 @@
-export { NidocaWCForm } from "./nidoca-helper-form";
+export { NidocaHelperForm } from "./nidoca-form-helper";
