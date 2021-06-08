@@ -4,7 +4,7 @@
     "declaration": true,
     "outDir": "lib",
     "module": "es2015",
-    "rootDir": "src",
+    "rootDir": "./src",
     "downlevelIteration": true,
     "strict": true,
     "noUnusedParameters": true,
@@ -15,10 +15,9 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },
+  "include": ["src/**/*.ts"],
   "typedocOptions": {
     "entryPoints": ["./src"],
     "out": "docs"
-  },
-  "include": ["./src"],
-  "exclude": ["node_modules"]
+  }
 }

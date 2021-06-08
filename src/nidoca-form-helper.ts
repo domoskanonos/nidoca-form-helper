@@ -1,27 +1,34 @@
 export class NidocaHelperForm<T> {
-  getCurrentValues(element: HTMLElement): T {
+  getCurrent(element: HTMLElement): T {
     const retval: any = {};
-    const elements = this.getElements(element.shadowRoot?.children);
-    elements.forEach((currentElement: any) => {
-      const name = currentElement.getAttribute("name");
-      if (currentElement.value !== undefined) {
-        const value = currentElement.value;
-        const type = currentElement.getAttribute("type");
-        switch (type) {
-          case "number":
-            retval[name] = Number(value);
-            break;
-          case "date":
-            retval[name] = new Date(value);
-            break;
-          default:
-            retval[name] = value;
-            break;
+
+    [element.children, element.shadowRoot?.children].forEach((element) => {
+      const elements = this.getElements(element);
+      elements.forEach((currentElement: any) => {
+        const name = currentElement.getAttribute("name");
+        if (currentElement.value !== undefined) {
+          const value = currentElement.value;
+          const type = currentElement.getAttribute("type");
+          switch (type) {
+            case "number":
+              retval[name] = Number(value);
+              break;
+            case "date":
+              retval[name] = new Date(value);
+              break;
+            case "checkbox":
+              retval[name] = currentElement.checked;
+              break;
+            default:
+              retval[name] = value;
+              break;
+          }
+        } else if (currentElement.checked) {
+          retval[name] = currentElement.checked;
         }
-      } else if (currentElement.checked) {
-        retval[name] = currentElement.checked;
-      }
+      });
     });
+
     return <T>retval;
   }
 
