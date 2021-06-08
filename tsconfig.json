@@ -15,6 +15,10 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },
-  "include": ["src", "__tests__/router-service-test.ts"],
+  "typedocOptions": {
+    "entryPoints": ["./src"],
+    "out": "docs"
+  },
+  "include": ["./src"],
   "exclude": ["node_modules"]
 }

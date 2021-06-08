@@ -5,26 +5,39 @@
   "version": "1.0.0",
   "description": "Der Nidoca Form Helfer, durchläuft alle HTML Elemente eines Elternteils und such automatisch alle Form Elemente und baut aus den aktuellen Werten ein Objekt.",
   "main": "lib/index.js",
+  "module": "./source/index.js",
   "devDependencies": {
-    "@types/node": "15.6.1",
-    "@typescript-eslint/eslint-plugin": "4.23.0",
-    "@typescript-eslint/parser": "4.23.0",
-    "eslint": "7.26.0",
-    "prettier": "2.3.0",
-    "typescript": "4.3.2"
-  },
-  "dependencies": {
-    "lit": "2.0.0-rc.2"
+    "@typescript-eslint/eslint-plugin": "4.26.0",
+    "@typescript-eslint/parser": "4.26.0",
+    "eslint": "7.28.0",
+    "eslint-plugin-tsdoc": "0.2.14",
+    "html-webpack-plugin": "5.3.1",
+    "prettier": "2.3.1",
+    "terser-webpack-plugin": "5.1.3",
+    "ts-loader": "9.2.3",
+    "typedoc": "0.20.36",
+    "typescript": "4.2",
+    "webpack": "5.38.1",
+    "webpack-cli": "4.7.0",
+    "webpack-dev-server": "3.11.2"
   },
   "scripts": {
-    "build": "tsc -p ./",
+    "start": "webpack serve --config webpack.local.js",
+    "pretty": "prettier --write \"./**/*.{ts,json}\"",
+    "ts": "tsc -p ./",
     "eslint": "eslint src",
     "eslint:fix": "eslint src --fix",
-    "test": "echo no tests",
-    "pretty": "prettier --write \"./**/*.{ts,json}\"",
-    "bundle": "npm install && npm run eslint && npm run test && npm run build",
-    "preversion": "",
-    "new-version": "npm run bundle && npm version patch && npm publish --access=public",
-    "postversion": ""
-  }
+    "docs": "typedoc",
+    "docs:watch": "typedoc --watch",
+    "build": "npm i && npm run ts && npm run eslint && npm run docs",
+    "preversion": "npm run build",
+    "new-patch": "npm version patch -m \"new patch version: %s\" --force",
+    "new-minor": "npm version minor -m \"new minor version: %s\" --force",
+    "new-major": "npm version major -m \"new major version: %s\" --force",
+    "postversion": "npm publish --access=public && git push --follow-tags",
+    "unpublish": "npm unpublish --force"
+  },
+  "browserslist": [
+    "last 1 Chrome version"
+  ]
 }
