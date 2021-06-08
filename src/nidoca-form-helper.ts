@@ -16,11 +16,18 @@ export class NidocaHelperForm<T> {
             case "date":
               retval[name] = new Date(value);
               break;
+            case "datetime":
+              retval[name] = new Date(value);
+              break;
             case "checkbox":
               retval[name] = currentElement.checked;
               break;
             default:
-              retval[name] = value;
+              if (isNaN(value)) {
+                retval[name] = value;
+              } else {
+                retval[name] = Number(value);
+              }
               break;
           }
         } else if (currentElement.checked) {
