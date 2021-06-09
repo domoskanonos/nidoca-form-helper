@@ -2,7 +2,7 @@
   "name": "@domoskanonos/nidoca-form-helper",
   "author": "Dominik Bruhn",
   "license": "MIT",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Der Nidoca Form Helfer, durchläuft alle HTML Elemente eines Elternteils und such automatisch alle Form Elemente und baut aus den aktuellen Werten ein Objekt.",
   "type": "module",
   "main": "lib/index.js",
