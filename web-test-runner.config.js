@@ -26,7 +26,6 @@ export default {
   nodeResolve: true,
   preserveSymlinks: true,
   browsers: commandLineBrowsers ?? Object.values(browsers),
-  nodeResolve: true,
   testFramework: {
     // mocha testframework documentation: https://mochajs.org/api/mocha
     config: {
