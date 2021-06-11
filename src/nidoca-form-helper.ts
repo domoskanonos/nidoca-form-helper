@@ -24,6 +24,8 @@ export class NidocaHelperForm<T> {
           default:
             if (currentElement.checked) {
               retval[name] = currentElement.checked;
+            } else if (value == "") {
+              retval[name] = value;
             } else if (isNaN(value)) {
               retval[name] = value;
             } else {

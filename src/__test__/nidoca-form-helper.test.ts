@@ -8,6 +8,7 @@ class Test {
   myText: string | undefined;
   myNumber: number | undefined;
   checked: boolean | undefined;
+  unchecked: boolean | undefined;
   birthday: Date | undefined;
   meetingTime: Date | undefined;
 }
@@ -43,6 +44,11 @@ suite("NidocaHelperForm", () => {
     inputTypeCheckbox.checked = true;
     div.appendChild(inputTypeCheckbox);
 
+    const inputTypeCheckboxUnchecked = document.createElement("input");
+    inputTypeCheckboxUnchecked.type = "checkbox";
+    inputTypeCheckboxUnchecked.name = "unchecked";
+    div.appendChild(inputTypeCheckboxUnchecked);
+
     const inputTypeDate = document.createElement("input");
     inputTypeDate.type = "date";
     inputTypeDate.name = "birthday";
@@ -61,6 +67,7 @@ suite("NidocaHelperForm", () => {
     assert.equal(model.myNumber, 99);
     assert.equal(model.id, 1);
     assert.equal(model.checked, true);
+    assert.equal(model.unchecked, false);
     assert.equal(model.birthday?.toISOString(), new Date("1920-12-01").toISOString());
 
     const mergeModel: Test = new Test();
