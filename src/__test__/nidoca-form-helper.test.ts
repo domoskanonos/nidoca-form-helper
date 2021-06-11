@@ -1,5 +1,5 @@
 import "@open-wc/testing";
-import {NidocaHelperForm} from "../src/nidoca-form-helper";
+import {NidocaHelperForm} from "../nidoca-form-helper";
 
 const assert = chai.assert;
 

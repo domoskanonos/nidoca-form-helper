@@ -6,32 +6,30 @@ export class NidocaHelperForm<T> {
       const elements = this.getElements(element);
       elements.forEach((currentElement: any) => {
         const name = currentElement.getAttribute("name");
-        if (currentElement.value !== undefined) {
-          const value = currentElement.value;
-          const type = currentElement.getAttribute("type");
-          switch (type) {
-            case "number":
-              retval[name] = Number(value);
-              break;
-            case "date":
-              retval[name] = new Date(value);
-              break;
-            case "datetime":
-              retval[name] = new Date(value);
-              break;
-            case "checkbox":
+        const value = currentElement.value;
+        const type = currentElement.getAttribute("type");
+        switch (type) {
+          case "number":
+            retval[name] = Number(value);
+            break;
+          case "date":
+            retval[name] = new Date(value);
+            break;
+          case "datetime":
+            retval[name] = new Date(value);
+            break;
+          case "checkbox":
+            retval[name] = currentElement.checked;
+            break;
+          default:
+            if (currentElement.checked) {
               retval[name] = currentElement.checked;
-              break;
-            default:
-              if (isNaN(value)) {
-                retval[name] = value;
-              } else {
-                retval[name] = Number(value);
-              }
-              break;
-          }
-        } else if (currentElement.checked) {
-          retval[name] = currentElement.checked;
+            } else if (isNaN(value)) {
+              retval[name] = value;
+            } else {
+              retval[name] = Number(value);
+            }
+            break;
         }
       });
     });
