@@ -1,5 +1,5 @@
 import "@open-wc/testing";
-import { NidocaHelperForm } from "../nidoca-form-helper";
+import {NidocaHelperForm} from "../src/nidoca-form-helper";
 
 const assert = chai.assert;
 
@@ -61,10 +61,7 @@ suite("NidocaHelperForm", () => {
     assert.equal(model.myNumber, 99);
     assert.equal(model.id, 1);
     assert.equal(model.checked, true);
-    assert.equal(
-      model.birthday?.toISOString(),
-      new Date("1920-12-01").toISOString()
-    );
+    assert.equal(model.birthday?.toISOString(), new Date("1920-12-01").toISOString());
 
     const mergeModel: Test = new Test();
     mergeModel.checked = false;

@@ -4,31 +4,30 @@
   "license": "MIT",
   "version": "1.0.1",
   "description": "Der Nidoca Form Helfer, durchläuft alle HTML Elemente eines Elternteils und such automatisch alle Form Elemente und baut aus den aktuellen Werten ein Objekt.",
-  "type": "module",
   "main": "lib/index.js",
   "module": "./source/index.js",
   "devDependencies": {
-    "@domoskanonos/nidoca-testing": "1.0.3"
+    "@domoskanonos/nidoca-testing": "1.0.11"
   },
   "scripts": {
+    "pretty": "prettier --write \"./**/*.{ts,json}\"",
+    "check-update": "ncu",
+    "upgrade": "ncu -u",
     "ts": "tsc",
     "ts:watch": "tsc --watch",
-    "pretty": "prettier --write \"./**/*.{ts,json}\"",
     "eslint": "eslint src",
     "eslint:fix": "eslint src --fix",
+    "lit-analyzer": "lit-analyzer \"src/**/*.{js,ts}\"",
     "test": "wtr",
     "test:watch": "npm run test -- --watch",
     "docs": "typedoc",
     "docs:watch": "typedoc --watch",
-    "build": "npm i && npm run ts && npm run eslint && npm run docs && npm run test",
-    "preversion": "npm run build",
+    "build": "npm i && npm run ts && npm run eslint && npm run lit-analyzer && npm run test && npm run docs",
+    "preversion": "npm run ts",
     "new-patch": "npm version patch -m \"new patch version: %s\" --force",
     "new-minor": "npm version minor -m \"new minor version: %s\" --force",
     "new-major": "npm version major -m \"new major version: %s\" --force",
-    "postversion": "npm publish --access=public && git push --follow-tags",
+    "postversion": "npm publish --access=public",
     "unpublish": "npm unpublish --force"
-  },
-  "browserslist": [
-    "last 1 Chrome version"
-  ]
+  }
 }

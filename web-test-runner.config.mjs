@@ -22,10 +22,11 @@ try {
 export default {
   testsStartTimeout: 30000,
   rootDir: ".",
-  files: ["./src/test/**/*.test.ts"],
+  files: ["./__test__/**/*.test.ts"],
   nodeResolve: true,
   preserveSymlinks: true,
   browsers: commandLineBrowsers ?? Object.values(browsers),
+  nodeResolve: true,
   testFramework: {
     // mocha testframework documentation: https://mochajs.org/api/mocha
     config: {
