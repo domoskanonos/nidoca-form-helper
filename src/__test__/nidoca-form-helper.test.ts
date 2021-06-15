@@ -11,6 +11,9 @@ class Test {
   unchecked: boolean | undefined;
   birthday: Date | undefined;
   meetingTime: Date | undefined;
+  myTextarea: string | undefined;
+  myButton: string | undefined;
+  mySelect: string | undefined;
 }
 
 suite("NidocaHelperForm", () => {
@@ -45,6 +48,7 @@ suite("NidocaHelperForm", () => {
     div.appendChild(inputTypeCheckbox);
 
     const inputTypeCheckboxUnchecked = document.createElement("input");
+
     inputTypeCheckboxUnchecked.type = "checkbox";
     inputTypeCheckboxUnchecked.name = "unchecked";
     div.appendChild(inputTypeCheckboxUnchecked);
@@ -61,6 +65,23 @@ suite("NidocaHelperForm", () => {
     inputTypeDateTime.value = "2018-06-12T19:30";
     div.appendChild(inputTypeDateTime);
 
+    const textareaElement = document.createElement("textarea");
+    textareaElement.name = "myTextarea";
+    textareaElement.innerHTML = "myTextareaValue";
+    div.appendChild(textareaElement);
+
+    const buttonElement = document.createElement("button");
+    buttonElement.name = "myButton";
+    buttonElement.value = "myButtonValue";
+    div.appendChild(buttonElement);
+
+    const selectElement = document.createElement("select");
+    const optionElement = document.createElement("option");
+    selectElement.appendChild(optionElement);
+    optionElement.value = "mySelectValue";
+    selectElement.name = "mySelect";
+    div.appendChild(selectElement);
+
     const model: Test = nidocaHelperForm.getCurrent(div);
     console.log("current model, %s", JSON.stringify(model));
     assert.equal(model.myText, "myTextValue");
@@ -69,9 +90,13 @@ suite("NidocaHelperForm", () => {
     assert.equal(model.checked, true);
     assert.equal(model.unchecked, false);
     assert.equal(model.birthday?.toISOString(), new Date("1920-12-01").toISOString());
+    assert.equal(model.myTextarea, "myTextareaValue");
+    assert.equal(model.myButton, "myButtonValue");
+    assert.equal(model.mySelect, "mySelectValue");
 
     const mergeModel: Test = new Test();
     mergeModel.checked = false;
     mergeModel.myNumber = 999;
+
   });
 });
