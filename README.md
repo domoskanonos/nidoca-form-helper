@@ -8,7 +8,7 @@ it finds all form elements (input, select, textarea, button), automatically read
 |:-------------|:-------------|
 |npm|<nobr>[![Published on npm](https://img.shields.io/npm/l/@domoskanonos/nidoca-form-helper)](https://www.npmjs.com/package/@domoskanonos/nidoca-form-helper) [![Published on npm](https://img.shields.io/npm/v/@domoskanonos/nidoca-form-helper)](https://www.npmjs.com/package/@domoskanonos/nidoca-form-helper) [![Published on npm](https://img.shields.io/bundlephobia/min/@domoskanonos/nidoca-form-helper)](https://www.npmjs.com/package/@domoskanonos/nidoca-form-helper) [![Published on npm](https://img.shields.io/bundlephobia/minzip/@domoskanonos/nidoca-form-helper)](https://www.npmjs.com/package/@domoskanonos/nidoca-form-helper) [![Published on npm](https://img.shields.io/npm/dw/@domoskanonos/nidoca-form-helper)](https://www.npmjs.com/package/@domoskanonos/nidoca-form-helper)</nobr>|
 |github|<nobr>[![Published on git](https://img.shields.io/github/languages/code-size/domoskanonos/nidoca-form-helper)](https://github.com/domoskanonos/nidoca-form-helper)</nobr>|
-|donation|<nobr>[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SWGKEVSK2PDEE)</nobr>|
+|donation|<nobr>[![donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SWGKEVSK2PDEE)</nobr>|
 
 
 ### usage
