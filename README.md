@@ -1,9 +1,9 @@
 ## nidoca framework (nidoca-form-helper)
 
-Es ist oftmals mühsam und aufwendig, aus Input Feldern den aktuellen Wert auszulesen und in ein Objekt zu speichern.
-Ich habe dafür einen kleinen Helfer geschrieben, welcher alle Formular Komponenten (input, select, textarea, button) findet
-und automatisch die aktuellen Werte dieser Komponenten ausliest und in ein JSON Object schreibt und zurück gibt.
-Das Projekt ist mit Typescript umgesetzt.
+It's often tedious and time-consuming to read current values ​​from formular fields.
+This little helper class will help you get the job done.
+It finds all form elements (input, select, textarea, button)
+and automatically reads the current values and return a corresponding model object.
 
 |project info||
 |:-------------|:-------------|
@@ -12,21 +12,21 @@ Das Projekt ist mit Typescript umgesetzt.
 |donation|<nobr>[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SWGKEVSK2PDEE)</nobr>|
 
 
-### Verwendung
+### Usage
 
-#### Nehmen wir an du hast ein HTML Formular mit mehreren Input Feldern und möchtest dieses konfortabel auslesen:
-
+#### let's assume you have an HTML form with several input fields and want to read out the current values:
     <form id="myForm">
         <input type="test" name="myText" value="myTextValue" />
         <select name="mySelect">
-            <option value="myOptionValue" selected>myOptionValue</option>
+            <option value="myOptionValue" selected>my option value</option>
         </select>
         <textarea name="myTextarea">myTextareaValue</textarea>
         <button name="myButton" value="myButtonValue"></button>
     </form>
 
-#### Dafür benötigst du folgendes Typescript
+#### code
 
+##### typescript model class
     //corresponding form model class
     class Test {
         myText: string | undefined;
@@ -35,16 +35,17 @@ Das Projekt ist mit Typescript umgesetzt.
         mySelect: string | undefined;
     }
 
+##### get current values from formular elements as test object instance
     // get values from form element
     const formElement = document.getElementById("myForm");
     const nidocaHelperForm: NidocaHelperForm<Test> = new NidocaHelperForm();
     const model: Test = nidocaHelperForm.getCurrent(formElement);
 
-#### Die Werte in deinem Testobjekt sind anschließend:
+##### model value
 
-{
-    myText: "myTextValue";
-    myTextarea: "myTextareaValue;
-    myButton: "myButtonValue";
-    mySelect: "mySelectValue";
-}
+    {
+        myText: "myTextValue";
+        myTextarea: "myTextareaValue;
+        myButton: "myButtonValue";
+        mySelect: "mySelectValue";
+    }
