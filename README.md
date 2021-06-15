@@ -12,9 +12,8 @@ and automatically reads the current values and return a corresponding model obje
 |donation|<nobr>[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SWGKEVSK2PDEE)</nobr>|
 
 
-### Usage
-
-#### let's assume you have an HTML form with several input fields and want to read out the current values:
+### usage
+#### let's assume, you have an html formular with several input fields and want to read out the current values:
     <form id="myForm">
         <input type="test" name="myText" value="myTextValue" />
         <select name="mySelect">
@@ -25,7 +24,6 @@ and automatically reads the current values and return a corresponding model obje
     </form>
 
 #### code
-
 ##### typescript model class
     //corresponding form model class
     class Test {
@@ -41,8 +39,7 @@ and automatically reads the current values and return a corresponding model obje
     const nidocaHelperForm: NidocaHelperForm<Test> = new NidocaHelperForm();
     const model: Test = nidocaHelperForm.getCurrent(formElement);
 
-##### model value
-
+##### current model value
     {
         myText: "myTextValue";
         myTextarea: "myTextareaValue;
