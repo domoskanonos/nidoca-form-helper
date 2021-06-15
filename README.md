@@ -1,9 +1,8 @@
 ## nidoca framework (nidoca-form-helper)
 
-It's often tedious and time-consuming to read current values ​​from formular fields.
-This little helper class will help you get the job done.
-It finds all form elements (input, select, textarea, button)
-and automatically reads the current values and return a corresponding model object.
+it's often tedious and time-consuming to read current values ​​from formular fields.
+this little helper class will help you get the job done.
+it finds all form elements (input, select, textarea, button), automatically reads out the current values and returned the corresponding model object.
 
 |project info||
 |:-------------|:-------------|
@@ -42,7 +41,7 @@ and automatically reads the current values and return a corresponding model obje
     const nidocaHelperForm: NidocaHelperForm<Test> = new NidocaHelperForm();
     const model: Test = nidocaHelperForm.getCurrent(formElement);
 
-##### current model value
+##### current test object value
     {
         myText: "myTextValue";
         myTextarea: "myTextareaValue;
