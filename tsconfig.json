@@ -22,4 +22,5 @@
     "entryPoints": ["./src"],
     "out": "docs"
   }
+  
 }

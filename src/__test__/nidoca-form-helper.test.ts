@@ -97,6 +97,6 @@ suite("NidocaHelperForm", () => {
     const mergeModel: Test = new Test();
     mergeModel.checked = false;
     mergeModel.myNumber = 999;
-
   });
+  
 });
