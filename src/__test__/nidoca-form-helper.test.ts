@@ -65,10 +65,10 @@ suite("NidocaHelperForm", () => {
     inputTypeDateTime.value = "2018-06-12T19:30";
     div.appendChild(inputTypeDateTime);
 
-    const textarea = document.createElement("textarea");
-    textarea.name = "myTextarea";
-    textarea.value = "myTextareaValue";
-    div.appendChild(textarea);
+    const textareaElement = document.createElement("textarea");
+    textareaElement.name = "myTextarea";
+    textareaElement.innerHTML = "myTextareaValue";
+    div.appendChild(textareaElement);
 
     const buttonElement = document.createElement("button");
     buttonElement.name = "myButton";
@@ -97,6 +97,6 @@ suite("NidocaHelperForm", () => {
     const mergeModel: Test = new Test();
     mergeModel.checked = false;
     mergeModel.myNumber = 999;
-    
+
   });
 });
