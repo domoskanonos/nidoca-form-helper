@@ -85,17 +85,17 @@ suite("NidocaHelperForm", () => {
     selectElement.name = "mySelect";
     div.appendChild(selectElement);
 
-    const model: Test = nidocaHelperForm.getCurrent(div);
+    const model: Test | null | undefined = nidocaHelperForm.getCurrent(div);
     console.log("current model, %s", JSON.stringify(model));
-    assert.equal(model.myText, "myTextValue");
-    assert.equal(model.myNumber, 99);
-    assert.equal(model.id, 1);
-    assert.equal(model.checked, true);
-    assert.equal(model.unchecked, false);
-    assert.equal(model.birthday?.toISOString(), new Date("1920-12-01").toISOString());
-    assert.equal(model.myTextarea, "myTextareaValue");
-    assert.equal(model.myButton, "myButtonValue");
-    assert.equal(model.mySelect, "mySelectValue");
+    assert.equal(model?.myText, "myTextValue");
+    assert.equal(model?.myNumber, 99);
+    assert.equal(model?.id, 1);
+    assert.equal(model?.checked, true);
+    assert.equal(model?.unchecked, false);
+    assert.equal(model?.birthday?.toISOString(), new Date("1920-12-01").toISOString());
+    assert.equal(model?.myTextarea, "myTextareaValue");
+    assert.equal(model?.myButton, "myButtonValue");
+    assert.equal(model?.mySelect, "mySelectValue");
 
     const mergeModel: Test = new Test();
     mergeModel.checked = false;
