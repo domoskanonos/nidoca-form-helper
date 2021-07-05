@@ -1,46 +1,45 @@
 export class NidocaHelperForm<T> {
-  getCurrent(element: HTMLElement): T {
+  getCurrent(element: HTMLElement | null | undefined): T | null | undefined {
+    if (element == undefined) {
+      return element;
+    }
     const retval: any = {};
-
-    [element.children, element.shadowRoot?.children].forEach((element) => {
-      const elements = this.getElements(element);
-      elements.forEach((currentElement: any) => {
-        const tagName = currentElement.tagName;
-        const name = currentElement.getAttribute("name");
-        const value = currentElement.value;
-        if (tagName == "INPUT") {
-          const type = currentElement.getAttribute("type");
-          switch (type) {
-            case "number":
-              retval[name] = Number(value);
-              break;
-            case "date":
-              retval[name] = new Date(value);
-              break;
-            case "datetime":
-              retval[name] = new Date(value);
-              break;
-            case "checkbox":
+    const elements = this.getElements(element.children);
+    elements.forEach((currentElement: any) => {
+      const tagName = currentElement.tagName;
+      const name = currentElement.getAttribute("name");
+      const value = currentElement.value;
+      if (tagName == "INPUT") {
+        const type = currentElement.getAttribute("type");
+        switch (type) {
+          case "number":
+            retval[name] = Number(value);
+            break;
+          case "date":
+            retval[name] = new Date(value);
+            break;
+          case "datetime":
+            retval[name] = new Date(value);
+            break;
+          case "checkbox":
+            retval[name] = currentElement.checked;
+            break;
+          default:
+            if (currentElement.checked) {
               retval[name] = currentElement.checked;
-              break;
-            default:
-              if (currentElement.checked) {
-                retval[name] = currentElement.checked;
-              } else if (value == "") {
-                retval[name] = value;
-              } else if (isNaN(value)) {
-                retval[name] = value;
-              } else {
-                retval[name] = Number(value);
-              }
-              break;
-          }
-        } else {
-          retval[name] = value;
+            } else if (value == "") {
+              retval[name] = value;
+            } else if (isNaN(value)) {
+              retval[name] = value;
+            } else {
+              retval[name] = Number(value);
+            }
+            break;
         }
-      });
+      } else if (tagName == "BUTTON" || tagName == "SELECT" || tagName == "TEXTAREA") {
+        retval[name] = value;
+      }
     });
-
     return <T>retval;
   }
 
@@ -60,9 +59,12 @@ export class NidocaHelperForm<T> {
           const childElements = this.getElements(element.children);
           retval = retval.concat(childElements);
         }
+        if (element.shadowRoot?.children.length > 0) {
+          const childElements = this.getElements(element.shadowRoot?.children);
+          retval = retval.concat(childElements);
+        }
       }
     }
     return retval;
   }
-  
 }

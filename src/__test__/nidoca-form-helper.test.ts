@@ -20,6 +20,9 @@ suite("NidocaHelperForm", () => {
   test("check", () => {
     const nidocaHelperForm: NidocaHelperForm<Test> = new NidocaHelperForm();
 
+    assert.equal(nidocaHelperForm.getCurrent(null), null);
+    assert.equal(nidocaHelperForm.getCurrent(undefined), undefined);
+
     const div = document.createElement("div");
     assert.instanceOf(div, HTMLDivElement);
 
