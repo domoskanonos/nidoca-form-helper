@@ -4,7 +4,7 @@ export class NidocaHelperForm<T> {
       return element;
     }
     const retval: any = {};
-    const elements = this.getElements(element.children);
+    const elements = this.getElements(element);
     elements.forEach((currentElement: any) => {
       const tagName = currentElement.tagName;
       const name = currentElement.getAttribute("name");
@@ -43,25 +43,23 @@ export class NidocaHelperForm<T> {
     return <T>retval;
   }
 
-  private getElements(elements: HTMLCollection | undefined): Element[] {
+  private getElements(element: Element | undefined | null): Element[] {
     let retval: Element[] = [];
-    if (elements === undefined) {
-      return retval;
-    }
-    for (let i = 0; i < elements.length; i++) {
-      const element: any = elements.item(i);
-      if (element) {
-        const tagName = element.tagName;
-        if (tagName == "INPUT" || tagName == "BUTTON" || tagName == "SELECT" || tagName == "TEXTAREA") {
-          retval.push(element);
+    if (element) {
+      const tagName = element.tagName;
+      if (tagName == "INPUT" || tagName == "BUTTON" || tagName == "SELECT" || tagName == "TEXTAREA") {
+        retval.push(element);
+      }
+      if (element.children.length > 0) {
+        const elements = element?.children;
+        for (let i = 0; i < elements.length; i++) {
+          retval = retval.concat(this.getElements(elements.item(i)));
         }
-        if (element.children.length > 0) {
-          const childElements = this.getElements(element.children);
-          retval = retval.concat(childElements);
-        }
-        if (element.shadowRoot?.children.length > 0) {
-          const childElements = this.getElements(element.shadowRoot?.children);
-          retval = retval.concat(childElements);
+      }
+      if (element.shadowRoot && element.shadowRoot.children.length > 0) {
+        const elements = element.shadowRoot.children;
+        for (let i = 0; i < elements.length; i++) {
+          retval = retval.concat(this.getElements(elements.item(i)));
         }
       }
     }
