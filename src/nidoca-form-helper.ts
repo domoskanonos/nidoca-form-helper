@@ -8,36 +8,40 @@ export class NidocaHelperForm<T> {
     elements.forEach((currentElement: any) => {
       const tagName = currentElement.tagName;
       const name = currentElement.getAttribute("name");
-      const value = currentElement.value;
-      if (tagName == "INPUT") {
-        const type = currentElement.getAttribute("type");
-        switch (type) {
-          case "number":
-            retval[name] = Number(value);
-            break;
-          case "date":
-            retval[name] = new Date(value);
-            break;
-          case "datetime":
-            retval[name] = new Date(value);
-            break;
-          case "checkbox":
-            retval[name] = currentElement.checked;
-            break;
-          default:
-            if (currentElement.checked) {
-              retval[name] = currentElement.checked;
-            } else if (value == "") {
-              retval[name] = value;
-            } else if (isNaN(value)) {
-              retval[name] = value;
-            } else {
+      if (name == undefined || name == null) {
+        console.warn("input name is empty.");
+      } else {
+        const value = currentElement.value;
+        if (tagName == "INPUT") {
+          const type = currentElement.getAttribute("type");
+          switch (type) {
+            case "number":
               retval[name] = Number(value);
-            }
-            break;
+              break;
+            case "date":
+              retval[name] = new Date(value);
+              break;
+            case "datetime":
+              retval[name] = new Date(value);
+              break;
+            case "checkbox":
+              retval[name] = currentElement.checked;
+              break;
+            default:
+              if (currentElement.checked) {
+                retval[name] = currentElement.checked;
+              } else if (value == "") {
+                retval[name] = value;
+              } else if (isNaN(value)) {
+                retval[name] = value;
+              } else {
+                retval[name] = Number(value);
+              }
+              break;
+          }
+        } else if (tagName == "BUTTON" || tagName == "SELECT" || tagName == "TEXTAREA") {
+          retval[name] = value;
         }
-      } else if (tagName == "BUTTON" || tagName == "SELECT" || tagName == "TEXTAREA") {
-        retval[name] = value;
       }
     });
     return <T>retval;
