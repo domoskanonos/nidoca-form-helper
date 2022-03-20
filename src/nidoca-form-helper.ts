@@ -24,6 +24,9 @@ export class NidocaHelperForm<T> {
             case "datetime":
               retval[name] = new Date(value);
               break;
+            case "text":
+              retval[name] = value;
+              break;
             case "checkbox":
               retval[name] = currentElement.checked;
               break;
